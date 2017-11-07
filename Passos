@@ -1,0 +1,48 @@
+Passo a Passo:
+
+1) Dividir o corpus em:
+    a) Treino: 80% (cada classe) 
+    b) Teste: 20%
+
+2) Anotar o texto (normalização - usar alguma das 3 ferramentas)
+    - Tokenizar (segmentar em palavras)
+    - Normalizar lematização (remove flexões, colocando-as no "original")
+    - Classe gramatical (POS)
+
+3) Pré-processamento (Bag of words) - palavras mais relevantes que estruturarão o arquivo do Weka
+    - N-gramas:
+        n=1> palavras soltas;
+        n=2> sequência de 2 palavras
+        n=3> sequência de 3 palavras
+    Obs: Parar criar facilmente, cria N listas de acordo com o n usado, após desloca a lista do lado a quantidade de N usado. Por exemplo, se N=3, a primeira lista inicia no 0, a segunda no -1 e a terceira no -2;
+
+    Exemplo: (classe Esporte)
+        Frase: O técnico errou na escalação
+        
+        n=1>
+            O (prep)
+            técnico (substantivo)
+            errou [errar] (verbo)
+            na (prep)
+            escalação (substantivo)
+        O, na: caem fora, pois não interessam. (não são palavras).
+        Saída: técnico, errar, escalação
+
+        n=2>
+            O técnico
+            técnico errou
+            errou na
+            na escalação
+        Saída: técnico errar, errar escalação
+
+    - Escolher os termos (n-gramas)  mais relevantes
+        n=1: lista geral (k termos ordenados por ordem de relevância);
+
+4) Estruturação: atributos são os campos da Bag of Words (n=1)
+                 classes: 4 classes;
+                 data: cada texto, contendo a sua bag of words;
+
+Obs: Gerar arquivos de treino pras 3 listas de n-gramas criadas;
+
+
+
