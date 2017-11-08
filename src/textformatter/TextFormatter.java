@@ -6,9 +6,11 @@
 package textformatter;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -20,35 +22,36 @@ public class TextFormatter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        final String fileName = "";
+        final String fileName = "nosso.txt";
         String line = "";
-        
+
         try {
             // FileReader reads text files in the default encoding.
             FileReader fileReader = new FileReader(fileName);
 
             // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "Cp1252"));
             line = bufferedReader.readLine();
-            
-            while(line != null) {
-                //TODO;
-            }   
+
+            while (line != null) {
+                if (line.startsWith("TEXTO")) {
+                    System.out.println(line);
+                }
+
+                line = bufferedReader.readLine();
+            }
 
             // Always close files.
-            bufferedReader.close();         
-        }
-        catch(FileNotFoundException ex) {
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
             System.out.println(
-                "Unable to open file '" + 
-                fileName + "'");                
-        }
-        catch(IOException ex) {
+                    "Unable to open file '"
+                    + fileName + "'");
+        } catch (IOException ex) {
             System.out.println(
-                "Error reading file '" 
-                + fileName + "'");     
+                    "Error reading file '"
+                    + fileName + "'");
         }
     }
-    
+
 }
