@@ -22,8 +22,12 @@ public class TextFormatter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        final String fileName = "nosso.txt";
+        final String fileName = "esportes.txt";
         String line = "";
+        StringBuilder texto = new StringBuilder();
+        StringBuilder[] textos;
+
+        int inicia, continua = 0;
 
         try {
             // FileReader reads text files in the default encoding.
@@ -35,7 +39,12 @@ public class TextFormatter {
 
             while (line != null) {
                 if (line.startsWith("TEXTO")) {
-                    System.out.println(line);
+                    int numTexto = Integer.parseInt(line.split(" ")[1]);
+                    System.out.println(">> " + numTexto);
+
+                } else {
+
+                    texto.append(line);
                 }
 
                 line = bufferedReader.readLine();
