@@ -1,0 +1,7 @@
+org.cogroo
+org.cogroo.analyzer
+org.cogroo.config
+org.cogroo.text
+org.cogroo.text.impl
+org.cogroo.text.tree
+org.cogroo.util
